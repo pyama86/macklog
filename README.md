@@ -1,4 +1,5 @@
 # Maltch
+[![Build Status](https://travis-ci.org/pyama86/maltch.svg?branch=master)](https://travis-ci.org/pyama86/maltch)
 
 [![Code Climate](https://codeclimate.com/github/pyama86/maltch/badges/gpa.svg)](https://codeclimate.com/github/pyama86/maltch)
 
