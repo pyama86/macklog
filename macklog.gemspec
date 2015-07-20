@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'maltch/version'
+require 'macklog/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "maltch"
-  spec.version       = Maltch::VERSION
+  spec.name          = "macklog"
+  spec.version       = Macklog::VERSION
   spec.authors       = ["kazuhiko yamahsita"]
   spec.email         = ["pyama@pepabo.com"]
 

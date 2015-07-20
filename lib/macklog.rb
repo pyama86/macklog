@@ -1,9 +1,9 @@
 require 'thor'
 require 'pp'
-require "maltch/version"
-require "maltch/cli"
+require "macklog/version"
+require "macklog/cli"
 
-module Maltch
+module Macklog
   class Error < StandardError; end
   class FileNotFound < Error; end
   class MatchWord < Error; end

@@ -1,6 +1,6 @@
-require 'maltch'
+require 'macklog'
 
-module Maltch
+module Macklog
   class Cli < Thor
     desc "check", "check log"
     option :file, :type => :string , :required => true, :aliases => '-f'
@@ -39,8 +39,8 @@ module Maltch
       end
 
       def notified?(file_path, record)
-        tmp_path = ENV["maltch_tmp"] ? ENV["maltch_tmp"] : "/tmp"
-        tmp_path << "/maltch_#{File.basename(file_path, '.*')}.tmp"
+        tmp_path = ENV["macklog_tmp"] ? ENV["macklog_tmp"] : "/tmp"
+        tmp_path << "/macklog_#{File.basename(file_path, '.*')}.tmp"
 
         unless File.exist?(tmp_path) && File.readlines(tmp_path).map(&:chomp).include?(record)
           append_alert_log(tmp_path, record)
@@ -60,9 +60,9 @@ module Maltch
         if ENV["MALTCH_TEST"]
           case status
           when 2
-            raise(Maltch::MatchWord)
+            raise(Macklog::MatchWord)
           when 3
-            raise(Maltch::FileNotFound)
+            raise(Macklog::FileNotFound)
           else
             true
           end

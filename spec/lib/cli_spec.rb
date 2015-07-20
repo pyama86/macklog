@@ -1,8 +1,8 @@
 require 'spec_helper'
-describe Maltch::Cli do
+describe Macklog::Cli do
   describe "file not found" do
     it do
-      expect { Maltch::Cli.new.invoke(:check, [], { file: "not_exist.text", word: "test" }) }.to raise_error(Maltch::FileNotFound)
+      expect { Macklog::Cli.new.invoke(:check, [], { file: "not_exist.text", word: "test" }) }.to raise_error(Macklog::FileNotFound)
     end
   end
   
@@ -10,10 +10,10 @@ describe Maltch::Cli do
     before do
       allow(File).to receive(:expand_path).and_return("test1.log")
       allow(File).to receive(:exist?).and_return(true)
-      allow(File).to receive(:readlines).and_return(File.readlines("spec/fixture/test1.log"), File.readlines("spec/fixture/maltch_test1.tmp"))
+      allow(File).to receive(:readlines).and_return(File.readlines("spec/fixture/test1.log"), File.readlines("spec/fixture/macklog_test1.tmp"))
     end
     it do
-      Maltch::Cli.new.invoke(:check, [], { file: "test1.log", word: "unmatch" })
+      Macklog::Cli.new.invoke(:check, [], { file: "test1.log", word: "unmatch" })
     end
   end
 
@@ -21,15 +21,15 @@ describe Maltch::Cli do
     before do
       allow(File).to receive(:expand_path).and_return("test1.log")
       allow(File).to receive(:exist?).and_return(true)
-      allow(File).to receive(:readlines).and_return(File.readlines("spec/fixture/test1.log"), File.readlines("spec/fixture/maltch_test1.tmp"))
+      allow(File).to receive(:readlines).and_return(File.readlines("spec/fixture/test1.log"), File.readlines("spec/fixture/macklog_test1.tmp"))
     end
 
     it do
-      expect { Maltch::Cli.new.invoke(:check, [], { file: "test1.log", word: "Fatal" }) }.to raise_error(Maltch::MatchWord)
+      expect { Macklog::Cli.new.invoke(:check, [], { file: "test1.log", word: "Fatal" }) }.to raise_error(Macklog::MatchWord)
     end
     
     it do
-      expect { Maltch::Cli.new.invoke(:check, [], { file: "test1.log", word: "fatal", ignorecase: true }) }.to raise_error(Maltch::MatchWord)
+      expect { Macklog::Cli.new.invoke(:check, [], { file: "test1.log", word: "fatal", ignorecase: true }) }.to raise_error(Macklog::MatchWord)
     end
   end
   
@@ -37,15 +37,15 @@ describe Maltch::Cli do
     before do
       allow(File).to receive(:expand_path).and_return("test1.log")
       allow(File).to receive(:exist?).and_return(true)
-      allow(File).to receive(:readlines).and_return(File.readlines("spec/fixture/test1.log"), File.readlines("spec/fixture/maltch_test1.tmp"))
+      allow(File).to receive(:readlines).and_return(File.readlines("spec/fixture/test1.log"), File.readlines("spec/fixture/macklog_test1.tmp"))
     end
 
     it do
-      Maltch::Cli.new.invoke(:check, [], { file: "test1.log", word: "critical" })
+      Macklog::Cli.new.invoke(:check, [], { file: "test1.log", word: "critical" })
     end
     
     it do
-      Maltch::Cli.new.invoke(:check, [], { file: "test1.log", word: "critical", ignorecase: true })
+      Macklog::Cli.new.invoke(:check, [], { file: "test1.log", word: "critical", ignorecase: true })
     end
   end
 end
