@@ -1,5 +1,8 @@
 # Maltch
 
+[![Code Climate](https://codeclimate.com/github/pyama86/maltch/badges/gpa.svg)](https://codeclimate.com/github/pyama86/maltch)
+
+
 mackerelのログ監視プラグインです。
 指定したファイルに指定したワードが出力された場合、Criticalアラートを出力します。
 
