@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    macklog (0.1.0)
+    macklog (0.1.1)
       thor
 
 GEM
