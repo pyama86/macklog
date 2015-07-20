@@ -26,7 +26,7 @@ module Macklog
         exit_status 2
       end
     end
-    
+    default_task :check
     no_tasks do
       def log_search(file_path, word, ignore=nil)
         result = case
