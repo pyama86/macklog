@@ -21,6 +21,17 @@ gem 'macklog'
 command = "macklog -f /var/log/httpd/error.log -w fatal -i"
 ```
 
+### options
+```
+-f : 対象ファイル
+-w : 対象キーワード
+-i : 大文字小文字を区別しない
+```
+
+同じアラートを複数回通知しないために、履歴を/tmpディレクトリ配下のファイルで行っています。
+/tmp以外で行う場合は、`export MACKLOG_TMP=/var/tmp`のように環境変数に指定を行って下さい。
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/macklog/fork )

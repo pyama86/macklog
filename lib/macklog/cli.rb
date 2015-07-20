@@ -39,7 +39,7 @@ module Macklog
       end
 
       def notified?(file_path, record)
-        tmp_path = ENV["macklog_tmp"] ? ENV["macklog_tmp"] : "/tmp"
+        tmp_path = ENV["MACKLOG_TMP"] ? ENV["MACKLOG_TMP"] : "/tmp"
         tmp_path << "/macklog_#{File.basename(file_path, '.*')}.tmp"
 
         unless File.exist?(tmp_path) && File.readlines(tmp_path).map(&:chomp).include?(record)
