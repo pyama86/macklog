@@ -4,7 +4,8 @@ module Macklog
   class Cli < Thor
     desc "check", "check log"
     option :file, :type => :string , :required => true, :aliases => '-f'
-    option :word , :type => :string , :required => true, :aliases => '-w'
+    option :critical, :type => :string, :aliases => '-c'
+    option :warning, :type => :string, :aliases => '-w'
     option :ignorecase , :type => :boolean, :aliases => '-i'
     def check
       # exit code
@@ -19,15 +20,16 @@ module Macklog
         puts "#{file_path} not found!"
         exit_status 3
       end
-      
-      result = log_search(file_path, options[:word] , options[:ignorecase])
-      
-      if result && !notified?(file_path, result)
-        exit_status 2
-      end
+      check_log(file_path, options[:critical], 2, options[:ignorecase]) if options[:critical]
+      check_log(file_path, options[:warning], 1, options[:ignorecase]) if options[:warning] 
     end
     default_task :check
     no_tasks do
+      def check_log(file_path, word, status, ignore)
+        result = log_search(file_path, word, ignore)
+        exit_status status if result && !notified?(file_path, result)
+      end
+
       def log_search(file_path, word, ignore=nil)
         result = case
         when ignore
@@ -59,8 +61,10 @@ module Macklog
       def exit_status(status)
         if ENV["MALTCH_TEST"]
           case status
+          when 1
+            raise(Macklog::Warning)
           when 2
-            raise(Macklog::MatchWord)
+            raise(Macklog::Critical)
           when 3
             raise(Macklog::FileNotFound)
           else
