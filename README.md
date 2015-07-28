@@ -10,7 +10,7 @@ mackerelのログ監視プラグインです。
 ## Installation
 
 ```ruby
-gem 'macklog'
+gem install macklog
 ```
 
 ## Usage
